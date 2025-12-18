@@ -156,6 +156,7 @@ a:hover {
   position: absolute;
   inset: 0;
   background-image: url("assets/hero.jpg"),
+    url("assets/hero.svg"),
     radial-gradient(1200px 700px at 10% 0%, rgba(94, 231, 194, 0.22), transparent 58%),
     linear-gradient(180deg, rgba(7, 11, 18, 0.25), rgba(7, 11, 18, 0.95));
   background-size: cover;

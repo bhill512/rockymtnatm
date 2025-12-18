@@ -1,10 +1,12 @@
 # Rocky Mountain ATM Services — Landing Page
 
-This repository hosts the public landing page for **Rocky Mountain ATM Services** and deploys it to **GitHub Pages** via **GitHub Actions**.
+This repository hosts the public landing page for **Rocky Mountain ATM Services** and deploys it using **Cloudflare Pages**.
 
 ## Quick edits
 
-- **Hero image**: add a real JPG photo of the Rocky Mountains at `assets/hero.jpg`.
+- **Hero image**:
+  - The site includes a built-in stylized hero background: `assets/hero.svg`
+  - To use a real photo, add it at `assets/hero.jpg` (it will automatically take precedence)
   - Keep the filename the same to avoid changing code.
   - Suggested size: ~2000px wide, optimized for web.
 
@@ -23,11 +25,11 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/xxxxxxx";
 
 If you don’t set the endpoint, the form will show a “Setup needed” warning message when submitted.
 
-## Deploy (GitHub Pages via Actions)
+## Deploy (Cloudflare Pages)
 
 Repo target: **`bhill512/rockymtnatm`**
 
-1. Push this repo to GitHub (example commands):
+### 1) Push the repo to GitHub (if you haven’t already)
 
 ```bash
 git init
@@ -38,34 +40,28 @@ git remote add origin git@github.com:bhill512/rockymtnatm.git
 git push -u origin main
 ```
 
-2. In GitHub: **Settings → Pages**
-   - Source: **GitHub Actions**
-3. In GitHub: **Settings → Pages → Custom domain**
-   - Set to: **`www.rockymtnatm.com`**
-4. After DNS is in place and GitHub issues the certificate, enable **Enforce HTTPS**.
+### 2) Create a Cloudflare Pages project (recommended for this site)
 
-## Cloudflare setup (connect `rockymtnatm.com`)
+In Cloudflare Dashboard:
+- Go to **Workers & Pages → Pages → Create a project**
+- Connect GitHub and select `bhill512/rockymtnatm`
+- Framework preset: **None**
+- Build command: **(leave empty)**
+- Build output directory: **`/`** (the repo root)
 
-Canonical domain: **`www.rockymtnatm.com`**
+After the first deploy, your site will have a `*.pages.dev` URL.
 
-### DNS records
+### 3) Attach your domain in Cloudflare Pages
 
-In Cloudflare DNS, create:
+Cloudflare Pages project → **Custom domains**:
+- Add **`www.rockymtnatm.com`**
+- Add **`rockymtnatm.com`**
+- Set **`www.rockymtnatm.com`** as the primary, and enable the “redirect to primary domain” option (if shown).
 
-- `CNAME` **www** → `bhill512.github.io` (set to **DNS only**, not proxied)
-- `CNAME` **@** → `bhill512.github.io` (set to **DNS only**, not proxied)
+Cloudflare will create/manage the needed DNS records and SSL automatically.
 
-### Redirect apex → www
+### Important: remove old GitHub Pages DNS records
 
-Create a **Redirect Rule** (or Page Rule) to force the apex domain to the canonical `www` domain:
-
-- From: `rockymtnatm.com/*`
-- To: `https://www.rockymtnatm.com/$1`
-- Status: **301**
-
-### SSL/TLS
-
-- In Cloudflare **SSL/TLS**, use a safe standard mode (commonly **Full**).
-- Turn on “Always Use HTTPS” only after `https://www.rockymtnatm.com` is working properly.
+If you previously pointed `@` or `www` at GitHub Pages IPs (`185.199.x.x`), remove those DNS records so Cloudflare Pages can manage them cleanly.
 
 
