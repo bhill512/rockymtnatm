@@ -96,8 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (year) year.textContent = String(new Date().getFullYear());
 
   const backdrop = $("[data-modal-backdrop]");
-  const openButtons = $all("[data-open-contact]");
-  const closeButtons = $all("[data-close-contact]");
   const modal = backdrop ? $(".modal", backdrop) : null;
 
   const form = $("#contactForm");
@@ -134,17 +132,32 @@ document.addEventListener("DOMContentLoaded", () => {
     if (lastActive && typeof lastActive.focus === "function") lastActive.focus();
   }
 
-  openButtons.forEach((btn) => btn.addEventListener("click", (e) => {
-    // Allow anchor buttons to not jump.
-    e.preventDefault();
-    openModal();
-  }));
+  // Event delegation makes open/close work reliably even if markup changes.
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    if (!(target instanceof Element)) return;
 
-  closeButtons.forEach((btn) => btn.addEventListener("click", closeModal));
+    const opener = target.closest("[data-open-contact]");
+    if (opener) {
+      // Prevent anchor buttons from jumping.
+      e.preventDefault();
+      openModal();
+      return;
+    }
 
-  if (backdrop) {
+    const closer = target.closest("[data-close-contact]");
+    if (closer) {
+      e.preventDefault();
+      closeModal();
+    }
+  });
+
+  // Click outside the modal should close it.
+  if (backdrop && modal) {
     backdrop.addEventListener("click", (e) => {
-      if (e.target === backdrop) closeModal();
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      if (!modal.contains(target)) closeModal();
     });
   }
 
