@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const business = $("#business")?.value?.trim() ?? "";
       const email = $("#email")?.value?.trim() ?? "";
       const phone = $("#phone")?.value?.trim() ?? "";
+      const referral = $("#referral")?.value?.trim() ?? "";
       const message = $("#message")?.value?.trim() ?? "";
       const subject = form.querySelector('input[name="_subject"]')?.value ?? "";
       const gotcha = form.querySelector('input[name="_gotcha"]')?.value ?? "";
@@ -231,6 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
           business,
           email,
           phone,
+          referral,
           message,
           _subject: subject,
         };

@@ -444,6 +444,76 @@ h2 {
   backdrop-filter: blur(12px);
 }
 
+/* Sample agreement page */
+.legal-page .section {
+  padding-top: 2.25rem;
+}
+
+.legal-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.legal-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  letter-spacing: -0.02em;
+}
+
+.legal-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.legal-panel {
+  margin-top: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: var(--shadow);
+  overflow: auto;
+}
+
+.contract {
+  margin: 0;
+  padding: 1.1rem;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+  body {
+    background: #fff;
+    color: #111;
+  }
+  .site-header,
+  .site-footer,
+  .legal-actions,
+  .skip-link {
+    display: none;
+  }
+  .legal-panel {
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  .contract {
+    color: #111;
+    font-size: 11pt;
+  }
+}
+
 .modal-header {
   padding: 1.05rem 1.1rem 0.6rem;
   display: flex;
