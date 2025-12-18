@@ -1,4 +1,4 @@
-# Rocky Mountain ATM Services — Landing Page
+# Rocky Mountain ATM Services - Landing Page
 
 This repository hosts the public landing page for **Rocky Mountain ATM Services** and deploys it using **Cloudflare Pages**.
 
@@ -45,6 +45,7 @@ git push -u origin main
 ### 2) Create a Cloudflare Pages project (recommended for this site)
 
 In Cloudflare Dashboard:
+
 - Go to **Workers & Pages → Pages → Create a project**
 - Connect GitHub and select `bhill512/rockymtnatm`
 - Framework preset: **None**
@@ -56,6 +57,7 @@ After the first deploy, your site will have a `*.pages.dev` URL.
 ### 3) Attach your domain in Cloudflare Pages
 
 Cloudflare Pages project → **Custom domains**:
+
 - Add **`www.rockymtnatm.com`**
 - Add **`rockymtnatm.com`**
 - Set **`www.rockymtnatm.com`** as the primary, and enable the “redirect to primary domain” option (if shown).
@@ -65,5 +67,3 @@ Cloudflare will create/manage the needed DNS records and SSL automatically.
 ### Important: remove old GitHub Pages DNS records
 
 If you previously pointed `@` or `www` at GitHub Pages IPs (`185.199.x.x`), remove those DNS records so Cloudflare Pages can manage them cleanly.
-
-
