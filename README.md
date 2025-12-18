@@ -17,7 +17,9 @@ This site uses **Formspree** so customers can send a message directly from the m
 1. Create a Formspree form at `https://formspree.io/`
 2. Set the destination email to **owner@rockymtnatm.com**
 3. Copy the Formspree endpoint URL (looks like `https://formspree.io/f/xxxxxxx`)
-4. Paste it into [`script.js`](script.js) by setting:
+4. Paste it into either:
+   - `index.html` on the form as `data-formspree-endpoint="https://formspree.io/f/xxxxxxx"` (recommended), or
+   - [`script.js`](script.js) by setting:
 
 ```js
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xxxxxxx";

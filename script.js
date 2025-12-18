@@ -2,6 +2,8 @@
 
 // TODO: Replace with your Formspree endpoint after you create the form.
 // Example: https://formspree.io/f/xxxxxxx
+//
+// You can set this either here OR via `data-formspree-endpoint` on #contactForm in index.html.
 const FORMSPREE_ENDPOINT = "";
 
 function $(selector, root = document) {
@@ -203,7 +205,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!ok) return;
 
-      if (!FORMSPREE_ENDPOINT) {
+      const endpoint =
+        form.getAttribute("data-formspree-endpoint")?.trim() || FORMSPREE_ENDPOINT;
+
+      if (!endpoint) {
         showStatus("warn");
         return;
       }
@@ -230,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
           _subject: subject,
         };
 
-        const res = await fetch(FORMSPREE_ENDPOINT, {
+        const res = await fetch(endpoint, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
