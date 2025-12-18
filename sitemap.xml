@@ -10,11 +10,6 @@
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
-  <url>
-    <loc>https://www.rockymtnatm.com/service-agreement.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
 </urlset>
 
 
