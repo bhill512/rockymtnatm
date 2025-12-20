@@ -429,6 +429,8 @@ h2 {
   place-items: center;
   padding: 1.25rem;
   z-index: 100;
+  /* If the modal is taller than the viewport, allow scrolling inside the backdrop. */
+  overflow: auto;
 }
 
 .modal-backdrop[hidden] {
@@ -442,6 +444,22 @@ h2 {
   background: rgba(10, 14, 22, 0.94);
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(12px);
+  /* Make the modal a scroll container on small screens. */
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 2.5rem);
+}
+
+.modal-body {
+  /* Allow the form content to scroll while keeping the header visible. */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@supports (height: 100dvh) {
+  .modal {
+    max-height: calc(100dvh - 2.5rem);
+  }
 }
 
 /* Sample agreement page */
